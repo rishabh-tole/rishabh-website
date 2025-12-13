@@ -2,8 +2,8 @@
     /* Color Palette - Light & Editorial */
     --bg-color: #f4f4f5;
     /* Light Grey/White */
-    --surface-color: #ffffff;
-    --surface-hover: #fafafa;
+    --surface-color: rgba(255, 255, 255, 0.8);
+    /* Semi-transparent for background to show */
     --text-primary: #18181b;
     /* Sharp Black */
     --text-secondary: #52525b;
@@ -12,7 +12,6 @@
     /* Deep Indigo */
     --secondary-accent: #06b6d4;
     /* Cyan */
-    --gradient-main: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
 
     /* Typography */
     --font-heading: 'Outfit', sans-serif;
@@ -47,36 +46,25 @@ body {
     font-family: var(--font-body);
     line-height: 1.6;
     overflow-x: hidden;
+    /* Clean Page Transition Fade */
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
-/* Triangle Mesh Transition Overlay */
-.transition-overlay {
+body.loaded {
+    opacity: 1;
+}
+
+/* Background Canvas */
+#bg-canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 9999;
+    z-index: -1;
+    /* Behind everything */
     pointer-events: none;
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    /* 10 columns of triangles */
-    grid-template-rows: repeat(10, 1fr);
-}
-
-.transition-triangle {
-    background-color: #000;
-    width: 100%;
-    height: 100%;
-    transform: scale(0);
-    transform-origin: center;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    transition: transform 0.4s ease-in-out;
-}
-
-.transition-triangle.active {
-    transform: scale(1.5);
-    /* Scale up to cover screen */
 }
 
 /* Typography Utilities */
@@ -95,7 +83,6 @@ h1 {
     letter-spacing: -2px;
     margin-bottom: var(--spacing-sm);
     color: var(--text-primary);
-    /* Solid black for editorial look */
 }
 
 h2 {
@@ -144,7 +131,6 @@ strong {
 .container {
     width: 90%;
     max-width: 1000px;
-    /* Maximize readability for vertical list */
     margin: 0 auto;
     padding: 0 var(--spacing-sm);
 }
@@ -164,8 +150,7 @@ section {
     left: 0;
     width: 100%;
     height: var(--navbar-height);
-    background: rgba(244, 244, 245, 0.9);
-    /* Light bg */
+    background: rgba(244, 244, 245, 0.8);
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -210,7 +195,7 @@ section {
     align-items: center;
     padding-top: var(--navbar-height);
     position: relative;
-    overflow: hidden;
+    /* No Overflow Hidden so canvas shows */
 }
 
 .hero-container {
@@ -229,7 +214,6 @@ section {
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--text-secondary);
-    /* Subtler */
     margin-bottom: var(--spacing-xs);
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -261,10 +245,7 @@ section {
     height: 100%;
     object-fit: cover;
     border-radius: 40px;
-    /* More rounded */
     box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.1);
-    /* Soft shadow */
-    /* REMOVED ROTATION/WIGGLE */
 }
 
 .cta-group {
@@ -273,19 +254,17 @@ section {
     margin-top: var(--spacing-md);
 }
 
-/* Projects Vertical Layout (Symmetrical) */
+/* Projects Vertical Layout */
 .projects-grid {
     display: flex;
     flex-direction: column;
     gap: 80px;
-    /* Large gap for vertical spacing */
     max-width: 800px;
     margin: 0 auto;
 }
 
 /* Clean Modern Card Style */
 .glass-card {
-    /* Renaming this would break HTML, keeping class name but changing style */
     background: var(--surface-color);
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 24px;
@@ -296,7 +275,8 @@ section {
     align-items: center;
     text-align: center;
     position: relative;
-    overflow: hidden;
+    backdrop-filter: blur(5px);
+    /* Subtle blur for background elements */
 }
 
 .glass-card:hover {
@@ -374,7 +354,6 @@ section {
 
 .btn-primary {
     background: var(--text-primary);
-    /* Black button */
     color: white;
     border: none;
 }
@@ -409,13 +388,25 @@ footer {
     color: var(--text-secondary);
     font-size: 0.9rem;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
-    /* Light border */
+}
+
+/* Animations */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Mobile */
 @media (max-width: 900px) {
     .hero-container {
         flex-direction: column-reverse;
+        /* Image on top */
         text-align: center;
         padding-top: var(--spacing-md);
     }
