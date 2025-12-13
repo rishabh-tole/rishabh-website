@@ -4,16 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rishabh Tole | Software Engineer & AI Researcher</title>
-    <meta name="description"
-        content="Portfolio of Rishabh Tole - Software Engineer, AI Researcher, and Musician. Seeking SWE/MLE internships.">
+    <title>Rishabh Tole | Intelligent Systems</title>
+    <meta name="description" content="Portfolio of Rishabh Tole - Software Engineer & AI Researcher.">
     <link rel="stylesheet" href="styles.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
 </head>
 
@@ -25,7 +23,7 @@
             <a href="index.html" class="logo">RT.</a>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="#work">Work</a></li>
+                <li><a href="#work">Selected Work</a></li>
                 <li><a href="music.html">Music</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="Rishabh%20Tole%20Resume.pdf" class="btn btn-sm btn-outline">Resume</a></li>
@@ -35,27 +33,20 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero">
-        <div class="hero-bg"></div>
         <div class="container hero-container">
             <div class="hero-content fade-in-up">
-                <p class="tagline">Software Engineer | AI Researcher</p>
-                <h1>Building the future of <br>Intelligent Systems.</h1>
+                <p class="tagline">Engineer & Researcher</p>
+                <h1>Designing the<br>Next Intelligence.</h1>
                 <p class="bio">
-                    I'm <strong>Rishabh Tole</strong>, a CS student passionate about <strong>Machine Learning</strong>
-                    and <strong>Scalable Systems</strong>.
-                </p>
-                <p class="bio">
-                    Currently building high-performance solutions and exploring the frontiers of AI. Seeking Summer 2026
-                    Internships in SWE & MLE.
+                    I'm <strong>Rishabh Tole</strong>. I build scalable systems and research novel AI applications.
+                    <br>Blending rigorous engineering with creative problem solving.
                 </p>
                 <div class="cta-group">
-                    <a href="#work" class="btn btn-primary">View Projects</a>
-                    <a href="mailto:rishabhtole@gmail.com" class="btn btn-outline">Let's Talk</a>
+                    <a href="#work" class="btn btn-primary">See Selected Work</a>
                 </div>
             </div>
             <div class="hero-image fade-in-up">
                 <div class="image-wrapper">
-                    <!-- Using optimized image -->
                     <img src="rishabh_headshot_optimized.png" alt="Rishabh Tole">
                 </div>
             </div>
@@ -65,39 +56,63 @@
     <!-- Projects Section -->
     <section id="work" class="projects">
         <div class="container">
-            <h2 class="fade-in-up">Selected Work</h2>
+            <div class="text-center fade-in-up">
+                <h2>Selected Projects</h2>
+            </div>
+
             <div class="projects-grid">
 
-                <!-- Project 1: Quantum Simulator -->
+                <!-- 1. Research (Reordered) -->
+                <article class="glass-card fade-in-up">
+                    <div class="card-content">
+                        <h3>AI Research</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Data Analysis</span>
+                        </div>
+                        <p style="max-width: 500px; margin: 0 auto;">
+                            Investigating novel approaches in Sediment Level Detection and Musical Phenotyping.
+                            Pushing the boundaries of environmental monitoring and music theory.
+                        </p>
+                        <a href="projects/research.html" class="link-arrow">Read Research <span>&rarr;</span></a>
+                    </div>
+                </article>
+
+                <!-- 2. Pingin' (Reordered & Renamed) -->
+                <article class="glass-card fade-in-up">
+                    <div class="card-content">
+                        <h3>Pingin'</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Geolocation</span>
+                        </div>
+                        <p style="max-width: 500px; margin: 0 auto;">
+                            A real-time social location platform for spontaneous connections using live geolocation
+                            tracking.
+                        </p>
+                        <a href="projects/pingin.html" class="link-arrow">View Case Study <span>&rarr;</span></a>
+                    </div>
+                </article>
+
+                <!-- 3. Quantum Simulator (Reordered) -->
                 <article class="glass-card fade-in-up">
                     <div class="card-content">
                         <h3>Quantum Computing Simulator</h3>
                         <div class="tech-stack">
                             <span class="tech-tag">C++</span>
-                            <span class="tech-tag">Python</span>
                             <span class="tech-tag">Linear Algebra</span>
+                            <span class="tech-tag">Python</span>
                         </div>
-                        <p>A high-performance quantum circuit simulator capable of simulating complex qubit states and
-                            gate operations.</p>
+                        <p style="max-width: 500px; margin: 0 auto;">
+                            A high-performance quantum circuit simulator capable of modeling complex qubit states and
+                            gate operations efficiently.
+                        </p>
                         <a href="projects/quantum.html" class="link-arrow">View Case Study <span>&rarr;</span></a>
                     </div>
                 </article>
 
-                <!-- Project 2: Pinging -->
-                <article class="glass-card fade-in-up">
-                    <div class="card-content">
-                        <h3>Pinging</h3>
-                        <div class="tech-stack">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Google Maps API</span>
-                        </div>
-                        <p>A real-time social location sharing platform designed to connect friends spontaneously.</p>
-                        <a href="projects/pinging.html" class="link-arrow">View Case Study <span>&rarr;</span></a>
-                    </div>
-                </article>
-
-                <!-- Project 3: MapPin -->
+                <!-- 4. MapPin -->
                 <article class="glass-card fade-in-up">
                     <div class="card-content">
                         <h3>MapPin'</h3>
@@ -106,22 +121,11 @@
                             <span class="tech-tag">Mobile</span>
                             <span class="tech-tag">UX Research</span>
                         </div>
-                        <p>A multi-sensory navigation aid for individuals with visual impairments and dyslexia.</p>
+                        <p style="max-width: 500px; margin: 0 auto;">
+                            A multi-sensory navigation aid designed for individuals with visual impairments and
+                            dyslexia.
+                        </p>
                         <a href="projects/mappin.html" class="link-arrow">View Case Study <span>&rarr;</span></a>
-                    </div>
-                </article>
-
-                <!-- Project 4: Research -->
-                <article class="glass-card fade-in-up">
-                    <div class="card-content">
-                        <h3>AI Research</h3>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Machine Learning</span>
-                            <span class="tech-tag">Data Analysis</span>
-                        </div>
-                        <p>Investigating novel approaches in Sediment Level Detection and Musical Phenotyping
-                            (Phenotes).</p>
-                        <a href="projects/research.html" class="link-arrow">View Research <span>&rarr;</span></a>
                     </div>
                 </article>
 
@@ -132,8 +136,8 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container text-center">
-            <h2 class="fade-in-up">Ready to Contribute</h2>
-            <p class="fade-in-up">I'm currently looking for full-time and internship opportunities.</p>
+            <h2 class="fade-in-up">Let's Connect</h2>
+            <p class="fade-in-up">Open to Internship Opportunities for Summer 2026.</p>
             <a href="mailto:rishabhtole@gmail.com" class="btn btn-primary fade-in-up" style="margin-top: 20px;">Get in
                 Touch</a>
         </div>
@@ -141,7 +145,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Rishabh Tole. Built with semantic HTML & modern CSS.</p>
+            <p>&copy; 2025 Rishabh Tole.</p>
         </div>
     </footer>
 
