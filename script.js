@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         draw() {
             // Draw Dots (Nodes)
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (distance < connectionDistance) {
                     // Opacity based on distance
                     const opacity = 1 - (distance / connectionDistance);
-                    ctx.strokeStyle = `rgba(0, 0, 0, ${opacity * 0.15})`; // Very subtle black lines
+                    ctx.strokeStyle = `rgba(0, 0, 0, ${opacity * 0.8})`; // Darker black lines for visibility
                     ctx.lineWidth = 1;
                     ctx.beginPath();
                     ctx.moveTo(p.x, p.y);
