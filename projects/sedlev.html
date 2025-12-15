@@ -35,15 +35,17 @@
     <div class="page-header">
         <div class="container fade-in-up">
             <h1 style="margin-bottom: 20px;">SedLev</h1>
+            <p class="tagline" style="text-align:center; color: var(--text-secondary); margin-bottom: 30px;">(Sediment
+                Level Detection)</p>
             <div class="tech-stack" style="justify-content: center; margin-bottom: 30px;">
                 <span class="tech-tag">IoT</span>
-                <span class="tech-tag">Data Analysis</span>
                 <span class="tech-tag">Environmental Tech</span>
                 <span class="tech-tag">Machine Learning</span>
+                <span class="tech-tag">Energy Harvesting</span>
             </div>
             <p style="text-align: center; max-width: 700px; margin: 0 auto; color: var(--text-secondary);">
-                Sediment Level Detection system to prevent water pollution and street flooding by monitoring storm drain
-                basins.
+                A smart sensor system to prevent water pollution and street flooding by monitoring storm drain sediment
+                levels.
             </p>
         </div>
     </div>
@@ -51,31 +53,129 @@
     <!-- Case Study Content -->
     <section class="container" style="padding-top: 0;">
         <div class="glass-card fade-in-up" style="padding: 40px; text-align: left; align-items: flex-start;">
-            <h2>The Challenge</h2>
-            <p>
-                Storm drains are essential for managing urban water runoff, but they often get clogged with sediment and
-                debris.
-                Manual inspection is costly, labor-intensive, and often reactive rather than proactive.
-                Delayed maintenance can lead to street flooding during heavy rains and environmental pollution if
-                contaminants are not removed.
-            </p>
 
-            <h2 style="margin-top: 40px;">The Solution</h2>
-            <p>
-                SedLev is an IoT-based system designed to automatically monitor sediment levels within catch basins.
-                It utilizes sensors to measure the accumulation of solids and transmits this data to a central
-                dashboard.
-            </p>
+            <!-- Problem -->
+            <div style="display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 60px;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h2>Problem</h2>
+                    <p>
+                        Excessive sediment accumulation in storm drain basins can cause water pollution and street
+                        flooding. The EPA mandates that sediment levels must not exceed 50%. To avoid these issues and
+                        potential fines, towns clean all drains annually, which leads to excessive spending on
+                        inspection and cleaning each year.
+                        <br><br>
+                        This approach overlooks the varying sediment buildup rates and lacks a method to detect sudden
+                        increases in sediment levels. This problem was identified by my Tech Tiger Team during the
+                        2019-2020 FIRST Lego League competition as part of our Innovation Research project.
+                    </p>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="../images/sedlev/problem.png" alt="Sediment Problem Illustration"
+                        style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                </div>
+            </div>
 
-            <h2 style="margin-top: 40px;">Impact</h2>
-            <p>
-                By automating the monitoring process, municipalities can optimize their cleaning schedules, dispatching
-                crews only when necessary.
-                This leads to significant cost savings, reduced carbon footprint from maintenance vehicles, and better
-                prevention of environmental mishaps.
-            </p>
+            <!-- Proposed Solution -->
+            <div style="display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 60px; flex-direction: row-reverse;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h2>Proposed Solution</h2>
+                    <p>
+                        Initially, we designed a solution with telescopic poles and laser emitters, but it faced issues
+                        with murky water and wear.
+                        <br><br>
+                        To address this, I am developing an improved solution using <strong>laser distance
+                            sensors</strong> for our proof of concept. These sensors can measure distances through water
+                        and can be mounted at the top of the grate, minimizing wear and maintenance.
+                        <br><br>
+                        For a long-term solution, I am exploring radar distance sensing and self-powered sensors to
+                        eliminate external power needs.
+                    </p>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="../images/sedlev/solution.png" alt="SedLev Sensor Solution"
+                        style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                </div>
+            </div>
+
+            <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 60px 0;">
+
+            <h1 style="text-align:center; margin-bottom: 40px;">Progress</h1>
+
+            <!-- Powering Methods -->
+            <div style="margin-bottom: 60px;">
+                <h3>Powering Methods: Piezoelectric Energy Harvesting</h3>
+                <p>
+                    <strong>Harnessing Energy from Moving Water:</strong> By integrating piezoelectric sensors, we can
+                    harvest ambient energy from moving water in storm drains. As water flows, it creates stress on the
+                    piezoelectric elements, inducing a charge that generates electrical energy to power the sensors
+                    autonomously.
+                    <br><br>
+                    <strong>Self-Powered Sensors:</strong> Utilizing energy harvesters (Magnetic, Solar, Thermal) allows
+                    us to create autonomous sensor nodes, reducing maintenance costs.
+                </p>
+                <!-- Optional: Use the schematic diagram here if it relates to the sensor setup -->
+                <div style="margin-top: 20px; width: 100%; display: flex; justify-content: center;">
+                    <img src="../images/sedlev/schematic.png" alt="Sensor Schematic"
+                        style="max-width: 800px; width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                </div>
+            </div>
+
+            <!-- Predictive Maintenance -->
+            <div style="display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 60px;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>Predictive Maintenance</h3>
+                    <p>
+                        By combining sediment-level sensors with environmental data (rainfall, flow rates), we can
+                        create a predictive maintenance system.
+                        <br><br>
+                        <strong>AI & Stochastic Models:</strong> I plan to integrate stochastic processes to model
+                        unpredictable water flow and predict sediment accumulation. AI algorithms will identify which
+                        drains need maintenance, preventing blockages before they happen.
+                        <br><br>
+                        <strong>Markov Decision Processes (MDPs):</strong> Using MDPs, SedLev can evaluate multiple
+                        factors to make real-time maintenance decisions.
+                    </p>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <!-- Use the Map image here to represent the city-wide network/monitoring -->
+                    <img src="../images/sedlev/map.jpg" alt="City Sensor Network Map"
+                        style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                </div>
+            </div>
+
+            <!-- V1 -->
+            <div style="margin-bottom: 60px;">
+                <h3>V1 Prototype & Transmission</h3>
+                <p>
+                    <strong>Detection:</strong> I selected laser distance sensors for the first prototype as they can be
+                    mounted safely at the top of the grate. Other options like Sonar, Radar, and Physical Spikes were
+                    evaluated but deemed less suitable due to cost or wear issues.
+                    <br><br>
+                    <strong>Transmission:</strong> After discussions with the head of sewage in Walpole, I concluded
+                    that <strong>Cellular Networks</strong> would be the most effective method, consistent with existing
+                    utility infrastructure. This ensures reliable, real-time data monitoring via a centralized cloud
+                    platform.
+                </p>
+            </div>
+
+            <!-- Problem Validation -->
+            <div style="margin-bottom: 60px;">
+                <h3>Problem Validation</h3>
+                <p>
+                    I submitted public records requests to towns like Walpole and Quincy to analyze maintenance costs.
+                    My analysis revealed that towns spend substantial amounts on flat-rate annual inspections for all
+                    drains, regardless of need.
+                    <br><br>
+                    Implementing SedLev would allow towns to target maintenance only where necessary, generating
+                    significant cost savings that would quickly offset the investment in sensor technology.
+                </p>
+            </div>
+
 
             <div style="margin-top: 50px; text-align: center; width: 100%;">
+                <!-- Linking to the same google site as before or keeping it internal if this IS the full page. The user said "complete the project page with this", implying this page replaces the need for the external one, but I can leave an external link if needed. I'll stick to the content provided. -->
+                <!-- If there is an external link from the previous version, I might include it as "Read Original Paper" or similar, but the user didn't explicitly ask for it here. I'll omit if not strictly necessary, or keep 'View Full Research' if it was there. -->
+                <!-- Previous page had: <a href="https://sites.google.com/view/rishabh-tole/projects-research/sediment-level-detection" target="_blank" class="btn btn-primary">Read Full Research</a> -->
                 <a href="https://sites.google.com/view/rishabh-tole/projects-research/sediment-level-detection"
                     target="_blank" class="btn btn-primary">Read Full Research</a>
             </div>
