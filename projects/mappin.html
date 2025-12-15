@@ -22,7 +22,8 @@
             <a href="../index.html" class="logo">RT.</a>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="../index.html#work" class="active">Selected Work</a></li>
+                <li><a href="../experience.html">Work Experience</a></li>
+                <li><a href="../projects.html">Projects</a></li>
                 <li><a href="../music.html">Music</a></li>
                 <li><a href="../index.html#contact">Contact</a></li>
                 <li><a href="../Rishabh%20Tole%20Resume.pdf" class="btn btn-sm btn-outline">Resume</a></li>
@@ -35,10 +36,10 @@
         <div class="container fade-in-up">
             <h1 style="margin-bottom: 20px;">MapPin'</h1>
             <div class="tech-stack" style="justify-content: center; margin-bottom: 30px;">
+                <span class="tech-tag">Robotics</span>
                 <span class="tech-tag">Accessibility</span>
-                <span class="tech-tag">Audio Integration</span>
-                <span class="tech-tag">Haptic Feedback</span>
-                <span class="tech-tag">Mobile Dev</span>
+                <span class="tech-tag">Embedded Systems</span>
+                <span class="tech-tag">3D Printing</span>
             </div>
             <p style="text-align: center; max-width: 700px; margin: 0 auto; color: var(--text-secondary);">
                 A visual, tactile, and auditory map to aid people who struggle with dyslexia and visual impairments.
@@ -49,28 +50,163 @@
     <!-- Case Study Content -->
     <section class="container" style="padding-top: 0;">
         <div class="glass-card fade-in-up" style="padding: 40px; text-align: left; align-items: flex-start;">
-            <h2>Overview</h2>
+
+            <h2>Problem</h2>
             <p>
-                MapPin' is designed to make navigation accessible for everyone. It integrates multi-sensory feedback
-                loops to aid users who may find traditional visual maps difficult to interpret.
+                Dyslexia, a condition that usually affects reading and writing, also hinders spatial awareness,
+                especially with maps. People with dyslexia struggle to convert 2D images on maps into 3D spatial
+                direction in real life. This difficulty arises from differences in how their brains process visual and
+                spatial signals. Despite extensive research, there's still no widely available solution, prompting my
+                efforts to develop one.
             </p>
 
-            <h2 style="margin-top: 40px;">How it Works</h2>
+            <h2 style="margin-top: 40px;">My Proposed Solution</h2>
             <p>
-                The application uses a combination of high-contrast visuals, auditory cues (voice guidance and distinct
-                sound alerts), and haptic feedback (vibrations) to guide users. This multimodal approach ensures that
-                information is conveyed through multiple channels, reducing cognitive load and increasing accessibility.
+                I’m developing a device inspired by a 3D Pin-art toy to help people with dyslexia navigate more
+                effectively.
+                <br><br>
+                Each pin will be individually controllable, allowing for tactile interaction with a 3D map displayed on
+                a flexible OLED screen, similar to Samsung’s foldable phone displays. The device will combine tactile,
+                visual, and auditory elements to create a multisensory navigation experience.
+                <br><br>
+                A companion app will handle GPS functions and heavy calculations, allowing the device to stay
+                lightweight. The app will include general city navigation and specialized features for digitizing maps
+                of theme parks, parks, and other areas.
             </p>
 
-            <h2 style="margin-top: 40px;">Impact</h2>
+            <h2 style="margin-top: 40px;">Expert Feedback</h2>
             <p>
-                By providing alternative ways to perceive spatial information, MapPin' empowers users with dyslexia and
-                visual impairments to navigate their environments with greater independence and confidence.
+                I recently presented my MapPin' project to Mrs. Valerie Rapowitz, who was excited about its potential to
+                improve navigation for people with dyslexia. She encouraged me to present it at the International
+                Dyslexia Association’s upcoming conference in Dallas. She also pointed out that the device could benefit
+                not only dyslexics but also individuals with speech impediments who struggle with navigation, as well as
+                those who are visually impaired. With her feedback regarding auditory inputs and tactile value for ADHD
+                users, I plan to refine MapPin' from a basic prototype into a fully functional tool.
             </p>
+
+            <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 60px 0;">
+
+            <h1 style="text-align:center; margin-bottom: 40px;">Progress</h1>
+
+            <!-- V5 -->
+            <div style="display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 60px;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>V5: Current Version</h3>
+                    <p>
+                        For the final proof of concept version of MapPin, I combined the reliability and low tolerances
+                        of Lego parts with custom 3D printed components. This allowed me to create a tactile map with a
+                        4x4 resolution, providing a tactile experience.
+                    </p>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="../images/mappin/v5.jpg" alt="MapPin V5 Prototype"
+                        style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                </div>
+            </div>
+
+            <!-- V4 -->
+            <div style="margin-bottom: 60px;">
+                <h3>V4: Quick MVP</h3>
+                <p>
+                    For my next version, I wanted to get to an MVP as soon as possible so that I could user test this. I
+                    decided to rig an existing pin-art toy to some servos. By removing the plexiglass and grouping pins
+                    using plates, I could rotate the servos attached to a helix structure to drive the pins up.
+                    <br><br>
+                    I knew the 4x5 setup was low resolution and the 10-second update time was slow, but it was
+                    sufficient to demonstrate the concept.
+                </p>
+            </div>
+
+            <!-- Input Processing -->
+            <div style="display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 60px; flex-direction: row-reverse;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>Input Processing</h3>
+                    <p>
+                        Tracking user movements accurately over small distances is crucial. Public GPS is not accurate
+                        enough, so I used an MPU9205 9-axis IMU.
+                        <br><br>
+                        simply integrating angular accelerations of the gyro worked for heading, but displacement was
+                        noisy. I looked into Kalman Filters and the Madgwick Algorithm to clean this data.
+                        <br><br>
+                        Currently, I have placed a button that, when pressed, simulates walking forward a small
+                        distance, which is sufficient for a proof of concept.
+                    </p>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="../images/mappin/electronics.jpg" alt="MapPin Electronics"
+                        style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                </div>
+            </div>
+
+            <!-- Path Planning & Map Conversion -->
+            <div style="display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 60px;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>Path Planning & Map Conversion</h3>
+                    <p>
+                        <strong>Path Planning:</strong> I implemented a Breadth First Search to find the shortest path
+                        from the user (Blue Circle) to the target. This removes irrelevant roads from the 3D rendering.
+                        I explored EBS-A* for future optimization on primitive hardware.
+                        <br><br>
+                        <strong>Map Conversion:</strong> Instead of proprietary maps, I intend for users to feed in a
+                        map of the area. My software currently uses a simple algorithm to check pixel color intensity to
+                        identify paths. For complex maps like theme parks, I plan to take user input to highlight paths,
+                        avoiding the heavy resource cost of training large CNN models.
+                    </p>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="../images/mappin/path_planning.png" alt="Path Planning Visualization"
+                        style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                </div>
+            </div>
+
+            <!-- Software Overview -->
+            <div style="margin-bottom: 60px;">
+                <h3>Software & Hardware Challenges</h3>
+                <p>
+                    I created a software architecture to handle logical interactions. On the hardware side, I tested
+                    low-power solenoids but found they drew too much current (0.5 amps) and overheated. Staggered power
+                    cycles didn't solve the issue, leading me to reconsider the hardware approach.
+                </p>
+            </div>
+
+
+            <!-- V3 -->
+            <div style="margin-bottom: 60px;">
+                <h3>V3: Pivoting Approach</h3>
+                <p>
+                    After speaking to a PhD student at MIT, I learned that dynamic pins might not be as valuable if
+                    users don't care about the specific obstruction type (tree vs building). I experimented with
+                    constraining the problem.
+                    <br><br>
+                    I tried low-voltage solenoid pistons to simplify the design, accepting that the 3D representation
+                    resolution would decrease. I realized that reaching a true MVP with 9g servos was physically
+                    impossible due to wire management and update cycle latency.
+                    <br><br>
+                    However, the multiplexed servo system worked! I could host a web server and establish a websocket
+                    connection with the app, marking the proof of concept as a success.
+                </p>
+            </div>
+
+
+            <!-- V1 -->
+            <div style="display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 60px; flex-direction: row-reverse;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>V1: CAD Design</h3>
+                    <p>
+                        My first version was originally made in CAD, featuring 24 9g servos arranged to actuate the
+                        pins. This laid the groundwork for understanding the spatial constraints and mechanical
+                        requirements of the device.
+                    </p>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="../images/mappin/cad_v1.png" alt="MapPin V1 CAD"
+                        style="width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                </div>
+            </div>
 
             <div style="margin-top: 50px; text-align: center; width: 100%;">
                 <a href="https://sites.google.com/view/rishabh-tole/projects-research/mappin"
-                    class="btn btn-primary">View Original Project</a>
+                    class="btn btn-primary">View Original Project Log</a>
             </div>
         </div>
     </section>
