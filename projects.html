@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rishabh Tole | Intelligent Systems</title>
-    <meta name="description" content="Portfolio of Rishabh Tole - Software Engineer & AI Researcher.">
+    <title>Projects | Rishabh Tole</title>
+    <meta name="description" content="All Projects by Rishabh Tole.">
     <link rel="stylesheet" href="styles.css">
 
     <!-- Google Fonts -->
@@ -22,9 +22,9 @@
         <div class="container nav-container">
             <a href="index.html" class="logo">RT.</a>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="experience.html">Experience</a></li>
-                <li><a href="projects.html">Projects</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
                 <li><a href="music.html">Music</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="Rishabh%20Tole%20Resume.pdf" class="btn btn-sm btn-outline">Resume</a></li>
@@ -32,35 +32,19 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="container hero-container">
-            <div class="hero-content fade-in-up">
-                <p class="tagline">Engineer & Researcher</p>
-
-                <p class="bio">
-                    I'm <strong>Rishabh Tole</strong>, an AI + Math student at UPenn passionate about Deep Learning.
-                    <br>When I'm not building cool stuff, I enjoy music and community service.
-                </p>
-                <div class="cta-group">
-                    <a href="#featured" class="btn btn-primary">See Featured Work</a>
-                </div>
-            </div>
-            <div class="hero-image fade-in-up">
-                <div class="image-wrapper">
-                    <!-- <img src="rishabh_headshot_optimized.png" alt="Rishabh Tole"> -->
-                    <img src="u3.png" alt="Rishabh Tole">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Work Section -->
-    <section id="featured" class="projects">
+    <!-- Page Header -->
+    <header class="page-header">
         <div class="container">
-            <div class="text-center fade-in-up">
-                <h2>Featured Work</h2>
-            </div>
+            <h1 class="fade-in-up">All Projects</h1>
+            <p class="fade-in-up" style="max-width: 600px; margin: 0 auto; color: var(--text-secondary);">
+                A collection of my work in AI, Engineering, and Design.
+            </p>
+        </div>
+    </header>
+
+    <!-- Projects Grid -->
+    <section class="projects">
+        <div class="container">
             <div class="projects-grid">
 
                 <!-- 1. Pingin' -->
@@ -80,29 +64,7 @@
                     </div>
                 </article>
 
-                <!-- 2. WPI Research -->
-                <article class="glass-card fade-in-up">
-                    <div class="card-content">
-                        <h3>Researcher @ WPI</h3>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Robotics</span>
-                            <span class="tech-tag">Computer Vision</span>
-                            <span class="tech-tag">Deep Learning</span>
-                        </div>
-                        <p style="max-width: 500px; margin: 0 auto;">
-                            First equal contributor on a paper for autonomous drone navigation using multi-pinhole
-                            lenseless imaging.
-                        </p>
-                        <ul
-                            style="text-align: left; margin: 20px 0; padding-left: 20px; color: var(--text-secondary); display: none;">
-                            <!-- Hidden on Featured, full details in Experience -->
-                        </ul>
-                        <!-- Determine if we link to a page or just show it. User didn't specify a page for experience items, but we can link to experience.html -->
-                        <a href="experience.html" class="link-arrow">View Experience <span>&rarr;</span></a>
-                    </div>
-                </article>
-
-                <!-- 3. Quantum Simulator -->
+                <!-- 2. Quantum Simulator -->
                 <article class="glass-card fade-in-up">
                     <div class="card-content">
                         <h3>Quantum Computing Simulator</h3>
@@ -119,20 +81,53 @@
                     </div>
                 </article>
 
-                <!-- 4. Breeze Travel -->
+                <!-- 3. SedLev (AI Research) -->
                 <article class="glass-card fade-in-up">
                     <div class="card-content">
-                        <h3>Software Engineer Intern @ Breeze Travel</h3>
+                        <h3>SedLev (AI Research)</h3>
                         <div class="tech-stack">
-                            <span class="tech-tag">Frontend</span>
-                            <span class="tech-tag">UI/UX</span>
-                            <span class="tech-tag">B2B SaaS</span>
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Data Analysis</span>
                         </div>
                         <p style="max-width: 500px; margin: 0 auto;">
-                            Redesigned UI to transition company website from B2C to B2B SaaS platform and developed
-                            features for business clients.
+                            Sediment Level Detection system to prevent water pollution and street flooding by monitoring
+                            storm drain basins.
                         </p>
-                        <a href="experience.html" class="link-arrow">View Experience <span>&rarr;</span></a>
+                        <a href="projects/research.html" class="link-arrow">Read Research <span>&rarr;</span></a>
+                    </div>
+                </article>
+
+                <!-- 4. MapPin -->
+                <article class="glass-card fade-in-up">
+                    <div class="card-content">
+                        <h3>MapPin'</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Accessibility</span>
+                            <span class="tech-tag">Mobile</span>
+                            <span class="tech-tag">UX Research</span>
+                        </div>
+                        <p style="max-width: 500px; margin: 0 auto;">
+                            A multi-sensory navigation aid designed for individuals with visual impairments and
+                            dyslexia.
+                        </p>
+                        <a href="projects/mappin.html" class="link-arrow">View Case Study <span>&rarr;</span></a>
+                    </div>
+                </article>
+
+                <!-- 5. Dhol Amp Project -->
+                <article class="glass-card fade-in-up">
+                    <div class="card-content">
+                        <h3>Dhol Amp Project</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Electronics</span>
+                            <span class="tech-tag">Audio Engineering</span>
+                        </div>
+                        <p style="max-width: 500px; margin: 0 auto;">
+                            <!-- Placeholder text until extracted -->
+                            An engineering project focused on amplifying the traditional Dhol drum while preserving its
+                            acoustic characteristics.
+                        </p>
+                        <!-- No link for now unless specified -->
                     </div>
                 </article>
 
