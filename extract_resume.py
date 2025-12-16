@@ -2,7 +2,7 @@
 import pypdf
 
 try:
-    reader = pypdf.PdfReader("Rishabh Tole Resume.pdf")
+    reader = pypdf.PdfReader("Rishabh_Resume.pdf")
     text = ""
     for page in reader.pages:
         text += page.extract_text() + "\n"
