@@ -94,8 +94,9 @@
                     fascinating to me.
                     <br><br>
                     Unlike traditional vision systems that process frames independently, Slot-BERT reasons about
-                    <strong>persistent objects across time</strong>—enabling robust segmentation, tracking, and recovery
-                    from occlusion. All without any labels!
+                    <strong>persistent objects across time</strong>. This lets it do robust segmentation, tracking, and
+                    even
+                    recover from occlusion. All without any labels!
                     <br><br>
                     I wanted to see if I could implement this architecture on my home PC for fun, and then apply it to
                     something in my life. Most research code assumes access to massive compute, but the core ideas
@@ -371,7 +372,7 @@ Feature reconstruction loss</pre>
                         </p>
                         <p
                             style="margin-top: 15px; color: var(--text-secondary); font-size: 0.9rem; text-align: center;">
-                            Note: Softmax is over <em>slots</em>, not positions—this creates competition!
+                            Note: Softmax is over <em>slots</em>, not positions. This is what creates competition!
                         </p>
                     </div>
                 </div>
