@@ -69,27 +69,51 @@
     <section class="container" style="padding-top: 0;">
         <div class="glass-card fade-in-up" style="padding: 40px; text-align: left; align-items: flex-start;">
 
+            <!-- Table of Contents -->
+            <div
+                style="margin-bottom: 50px; background: rgba(255,255,255,0.03); padding: 25px 30px; border-radius: 12px;">
+                <h3 style="margin-bottom: 15px;">Table of Contents</h3>
+                <ol style="padding-left: 20px; color: var(--text-secondary); line-height: 2;">
+                    <li><a href="#motivation" style="color: var(--accent-primary);">Motivation</a></li>
+                    <li><a href="#goals" style="color: var(--accent-primary);">Project Goals</a></li>
+                    <li><a href="#problem" style="color: var(--accent-primary);">Problem Definition</a></li>
+                    <li><a href="#architecture" style="color: var(--accent-primary);">High-Level Architecture</a></li>
+                    <li><a href="#components" style="color: var(--accent-primary);">Core Components (Deep Dive)</a></li>
+                    <li><a href="#training" style="color: var(--accent-primary);">Training Objective</a></li>
+                    <li><a href="#implementation" style="color: var(--accent-primary);">Implementation Details</a></li>
+                    <li><a href="#results" style="color: var(--accent-primary);">Results & Demos</a></li>
+                </ol>
+            </div>
+
             <!-- Motivation -->
-            <div style="margin-bottom: 60px;">
+            <div id="motivation" style="margin-bottom: 60px;">
                 <h2>Motivation</h2>
                 <p>
                     I came across the Slot-BERT paper while scrolling through ICLR submissions and thought it was super
                     cool. The idea of learning object-centric representations entirely through self-supervision seemed
                     fascinating to me.
                     <br><br>
+                    Unlike traditional vision systems that process frames independently, Slot-BERT reasons about
+                    <strong>persistent objects across time</strong>—enabling robust segmentation, tracking, and recovery
+                    from occlusion. All without any labels!
+                    <br><br>
                     I wanted to see if I could implement this architecture on my home PC for fun, and then apply it to
                     something in my life. Most research code assumes access to massive compute, but the core ideas
                     should scale down to consumer hardware if done carefully.
-                    <br><br>
-                    <strong>This project is my attempt to:</strong>
                 </p>
-                <ul style="margin-top: 15px; padding-left: 25px; color: var(--text-secondary);">
-                    <li>Understand the Slot-BERT architecture by building it from scratch</li>
-                    <li>Validate that object-centric video understanding works on modest hardware</li>
-                    <li>Extend the model toward real-time, streaming inference</li>
-                    <li>Have fun!</li>
-                </ul>
-                <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-secondary);">
+
+                <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 12px; margin-top: 25px;">
+                    <h4 style="margin-bottom: 15px;">This project is my attempt to:</h4>
+                    <ul style="padding-left: 25px; color: var(--text-secondary); line-height: 1.8;">
+                        <li>Understand the Slot-BERT architecture by building it from scratch</li>
+                        <li>Validate that object-centric video understanding works on modest hardware</li>
+                        <li>Extend the model toward real-time, streaming inference</li>
+                        <li>Have fun!</li>
+                    </ul>
+                </div>
+
+                <p
+                    style="margin-top: 25px; padding: 15px 20px; background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid var(--accent-primary);">
                     <strong>Reference Paper:</strong>
                     <a href="https://arxiv.org/abs/2501.12477" target="_blank"
                         style="color: var(--accent-primary);">Slot-BERT: Self-Supervised Object Discovery in Surgical
@@ -100,7 +124,7 @@
             <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
 
             <!-- Project Goals -->
-            <div style="margin-bottom: 60px;">
+            <div id="goals" style="margin-bottom: 60px;">
                 <h2>Project Goals</h2>
                 <p style="margin-bottom: 20px;">Build a self-supervised video model that achieves the following:</p>
 
@@ -154,37 +178,63 @@
 
                 <div style="margin-top: 30px;">
                     <h3>Development Phases</h3>
-                    <ol style="padding-left: 25px; color: var(--text-secondary); margin-top: 15px;">
-                        <li><strong>Reproduction</strong> — Slot-BERT core architecture</li>
-                        <li><strong>Validation</strong> — Object-centric benchmark (MOVi)</li>
-                        <li><strong>Extension</strong> — Online/streaming inference</li>
-                    </ol>
+                    <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
+                        <div
+                            style="flex: 1; min-width: 200px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; border-left: 3px solid #4CAF50;">
+                            <h4 style="color: #4CAF50;">Phase 1</h4>
+                            <p style="margin-top: 8px;"><strong>Reproduction</strong></p>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Slot-BERT core architecture</p>
+                        </div>
+                        <div
+                            style="flex: 1; min-width: 200px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; border-left: 3px solid #2196F3;">
+                            <h4 style="color: #2196F3;">Phase 2</h4>
+                            <p style="margin-top: 8px;"><strong>Validation</strong></p>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Object-centric benchmark (MOVi)
+                            </p>
+                        </div>
+                        <div
+                            style="flex: 1; min-width: 200px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; border-left: 3px solid #9C27B0;">
+                            <h4 style="color: #9C27B0;">Phase 3</h4>
+                            <p style="margin-top: 8px;"><strong>Extension</strong></p>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Online/streaming inference</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
 
             <!-- Problem Definition -->
-            <div style="margin-bottom: 60px;">
+            <div id="problem" style="margin-bottom: 60px;">
                 <h2>Problem Definition</h2>
 
-                <div style="margin-bottom: 25px;">
-                    <h3>Input</h3>
-                    <p>Unlabeled RGB video clips: \(\{I_1, I_2, \ldots, I_T\}\)</p>
+                <div style="display: flex; gap: 30px; flex-wrap: wrap; margin-top: 25px;">
+                    <div
+                        style="flex: 1; min-width: 280px; background: rgba(255,255,255,0.03); padding: 25px; border-radius: 12px;">
+                        <h3 style="color: #4CAF50;">Input</h3>
+                        <p style="margin-top: 15px;">Unlabeled RGB video clips:</p>
+                        <p
+                            style="font-size: 1.1rem; margin-top: 10px; text-align: center; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                            \(\{I_1, I_2, \ldots, I_T\}\)
+                        </p>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 280px; background: rgba(255,255,255,0.03); padding: 25px; border-radius: 12px;">
+                        <h3 style="color: #2196F3;">Output</h3>
+                        <p style="margin-top: 15px;">For each frame \(t\):</p>
+                        <ul
+                            style="padding-left: 25px; color: var(--text-secondary); margin-top: 10px; line-height: 1.8;">
+                            <li>\(K\) slot embeddings: \(S_{t,k} \in \mathbb{R}^D\)</li>
+                            <li>Soft segmentation masks: \(M_{t,k} \in [0,1]^{H \times W}\)</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div style="margin-bottom: 25px;">
-                    <h3>Output</h3>
-                    <p>For each frame \(t\):</p>
-                    <ul style="padding-left: 25px; color: var(--text-secondary); margin-top: 10px;">
-                        <li>\(K\) slot embeddings: \(S_{t,k} \in \mathbb{R}^D\)</li>
-                        <li>Soft segmentation masks: \(M_{t,k} \in [0,1]^{H \times W}\)</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3>Constraints</h3>
-                    <ul style="padding-left: 25px; color: var(--text-secondary); margin-top: 10px;">
+                <div
+                    style="margin-top: 25px; background: rgba(255,100,100,0.1); padding: 25px; border-radius: 12px; border: 1px solid rgba(255,100,100,0.2);">
+                    <h3 style="color: #ff6b6b;">Constraints (Self-Supervised = No Labels!)</h3>
+                    <ul style="padding-left: 25px; color: var(--text-secondary); margin-top: 15px; line-height: 1.8;">
                         <li>No ground-truth segmentation</li>
                         <li>No object identity labels</li>
                         <li>No supervision beyond reconstruction</li>
@@ -195,7 +245,7 @@
             <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
 
             <!-- Architecture -->
-            <div style="margin-bottom: 60px;">
+            <div id="architecture" style="margin-bottom: 60px;">
                 <h2>High-Level Architecture</h2>
                 <p
                     style="background: rgba(255,255,255,0.05); padding: 15px 20px; border-radius: 8px; border-left: 3px solid var(--accent-primary); margin-bottom: 25px;">
@@ -228,80 +278,487 @@ Object slots (K per frame)
 └─────────────────────────┘
      ↓
 Feature reconstruction loss</pre>
+
+                <div style="margin-top: 30px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px;">
+                    <h4>Key Design Decisions</h4>
+                    <ul style="padding-left: 25px; color: var(--text-secondary); margin-top: 15px; line-height: 1.8;">
+                        <li><strong>Frozen encoder:</strong> Reduces memory footprint and training time significantly
+                        </li>
+                        <li><strong>Per-frame slots:</strong> Slot Attention operates independently per frame before
+                            temporal modeling</li>
+                        <li><strong>Feature-space reconstruction:</strong> More robust than pixel-space, captures
+                            semantics</li>
+                        <li><strong>Bidirectional attention:</strong> Enables reasoning about past and future context
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
 
-            <!-- Core Components -->
-            <div style="margin-bottom: 60px;">
-                <h2>Core Components</h2>
+            <!-- Core Components Deep Dive -->
+            <div id="components" style="margin-bottom: 60px;">
+                <h2>Core Components (Deep Dive)</h2>
 
-                <div style="margin-bottom: 35px;">
+                <!-- Visual Encoder -->
+                <div style="margin-top: 30px; margin-bottom: 45px;">
                     <h3>1. Frozen Visual Encoder</h3>
-                    <p>Converts images into spatial feature maps using a pretrained model (ViT or CNN). Frozen during
-                        training to reduce compute and isolate object-centric learning.</p>
+                    <p style="margin-top: 15px;">
+                        Converts images into spatial feature maps using a pretrained model. <strong>Frozen during
+                            training</strong> to reduce compute and isolate object-centric learning.
+                    </p>
+
+                    <div
+                        style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; margin-top: 20px;">
+                        <h4>Options Considered:</h4>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                <td style="padding: 12px 0;"><strong>DINO ViT-S/8</strong></td>
+                                <td style="padding: 12px 0; color: var(--text-secondary);">Best quality features, works
+                                    great for object discovery</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                <td style="padding: 12px 0;"><strong>ResNet-18</strong></td>
+                                <td style="padding: 12px 0; color: var(--text-secondary);">Lightweight fallback, faster
+                                    but lower quality</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 0;"><strong>DINOv2</strong></td>
+                                <td style="padding: 12px 0; color: var(--text-secondary);">Latest and greatest,
+                                    exploring as an upgrade</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-secondary);">
+                        <strong>Output:</strong> For an input image of size \(H \times W\), produces feature maps of
+                        shape
+                        \((H/p) \times (W/p) \times D\) where \(p\) is the patch size and \(D\) is feature dimension.
+                    </p>
                 </div>
 
-                <div style="margin-bottom: 35px;">
-                    <h3>2. Slot Attention</h3>
-                    <p>Takes spatial features and produces \(K\) object slots per frame. Each slot softly "claims"
-                        regions of the image through competitive attention. <strong>Segmentation emerges because
-                            reconstruction is easiest when slots specialize.</strong></p>
+                <!-- Slot Attention -->
+                <div style="margin-bottom: 45px;">
+                    <h3>2. Slot Attention Module</h3>
+                    <p style="margin-top: 15px;">
+                        The heart of object discovery. Takes spatial features and produces \(K\) object slots per frame.
+                        Each slot softly "claims" regions of the image through <strong>competitive attention</strong>.
+                    </p>
+
+                    <div
+                        style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin-top: 20px; border-left: 3px solid var(--accent-primary);">
+                        <strong>Key Insight:</strong> Segmentation emerges because reconstruction is easiest when slots
+                        specialize.
+                        The model learns to assign different objects to different slots without any supervision!
+                    </div>
+
+                    <h4 style="margin-top: 25px;">Algorithm (Iterative Refinement):</h4>
+                    <ol style="padding-left: 25px; color: var(--text-secondary); margin-top: 15px; line-height: 2;">
+                        <li>Initialize \(K\) slots from a learned distribution: \(s_k \sim \mathcal{N}(\mu, \sigma)\)
+                        </li>
+                        <li>Compute attention weights between slots and spatial features</li>
+                        <li>Normalize weights across slots (competition via softmax)</li>
+                        <li>Update slots via weighted aggregation of features</li>
+                        <li>Apply GRU update for stability</li>
+                        <li>Repeat for \(T\) iterations (typically 3-5)</li>
+                    </ol>
+
+                    <div style="margin-top: 20px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                        <h4>Attention Computation:</h4>
+                        <p style="margin-top: 10px; text-align: center; font-size: 1rem;">
+                            \[\text{attn}_{ij} = \frac{\exp(q_i \cdot k_j / \sqrt{D})}{\sum_{i'} \exp(q_{i'} \cdot k_j /
+                            \sqrt{D})}\]
+                        </p>
+                        <p
+                            style="margin-top: 15px; color: var(--text-secondary); font-size: 0.9rem; text-align: center;">
+                            Note: Softmax is over <em>slots</em>, not positions—this creates competition!
+                        </p>
+                    </div>
                 </div>
 
-                <div style="margin-bottom: 35px;">
+                <!-- Temporal Slot Transformer -->
+                <div style="margin-bottom: 45px;">
                     <h3>3. Temporal Slot Transformer (Slot-BERT)</h3>
-                    <p>Slots from all frames are treated as tokens in a bidirectional transformer. This enables:</p>
-                    <ul style="padding-left: 25px; color: var(--text-secondary); margin-top: 10px;">
-                        <li>Identity persistence across frames</li>
-                        <li>Recovery after occlusion</li>
-                        <li>Long-range temporal context</li>
-                    </ul>
-                    <p style="margin-top: 10px; font-style: italic; color: var(--accent-primary);">This is the main
-                        contribution of the paper.</p>
+                    <p style="margin-top: 15px;">
+                        <span
+                            style="background: linear-gradient(90deg, var(--accent-primary), #9C27B0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">
+                            This is the main contribution of the paper!
+                        </span>
+                    </p>
+                    <p style="margin-top: 10px;">
+                        Slots from all frames are treated as tokens in a bidirectional transformer.
+                        This enables powerful temporal reasoning.
+                    </p>
+
+                    <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 25px;">
+                        <div
+                            style="flex: 1; min-width: 200px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px;">
+                            <h4 style="color: #4CAF50;">✓ Identity Persistence</h4>
+                            <p style="color: var(--text-secondary); margin-top: 10px; font-size: 0.9rem;">
+                                Objects maintain consistent slot assignments across frames
+                            </p>
+                        </div>
+                        <div
+                            style="flex: 1; min-width: 200px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px;">
+                            <h4 style="color: #2196F3;">✓ Occlusion Recovery</h4>
+                            <p style="color: var(--text-secondary); margin-top: 10px; font-size: 0.9rem;">
+                                Can "remember" objects that temporarily leave the frame
+                            </p>
+                        </div>
+                        <div
+                            style="flex: 1; min-width: 200px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px;">
+                            <h4 style="color: #9C27B0;">✓ Long-Range Context</h4>
+                            <p style="color: var(--text-secondary); margin-top: 10px; font-size: 0.9rem;">
+                                Bidirectional attention sees both past and future
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        style="margin-top: 25px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px;">
+                        <h4>Token Structure:</h4>
+                        <p style="margin-top: 10px; color: var(--text-secondary);">
+                            For a video with \(T\) frames and \(K\) slots per frame, the transformer receives \(T \times
+                            K\) tokens.
+                            Each token is the concatenation of:
+                        </p>
+                        <ul style="padding-left: 25px; color: var(--text-secondary); margin-top: 10px;">
+                            <li>Slot embedding from Slot Attention</li>
+                            <li>Learned temporal position encoding</li>
+                            <li>Learned slot index encoding</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div>
+                <!-- Slot Decoder -->
+                <div style="margin-bottom: 30px;">
                     <h3>4. Slot Decoder</h3>
-                    <p>Each slot is decoded independently to produce:</p>
-                    <ul style="padding-left: 25px; color: var(--text-secondary); margin-top: 10px;">
-                        <li>A feature contribution</li>
-                        <li>A spatial mask</li>
-                    </ul>
-                    <p style="margin-top: 10px;">Masks are normalized and composed. <strong>The model reconstructs
-                            features, not pixels.</strong></p>
+                    <p style="margin-top: 15px;">
+                        Each slot is decoded independently to produce reconstructions and masks.
+                    </p>
+
+                    <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
+                        <div
+                            style="flex: 1; min-width: 250px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px;">
+                            <h4>Per-Slot Output:</h4>
+                            <ul
+                                style="padding-left: 20px; color: var(--text-secondary); margin-top: 10px; line-height: 1.8;">
+                                <li>Feature contribution: \(\hat{f}_k \in \mathbb{R}^{H \times W \times D}\)</li>
+                                <li>Spatial mask (logits): \(\alpha_k \in \mathbb{R}^{H \times W}\)</li>
+                            </ul>
+                        </div>
+                        <div
+                            style="flex: 1; min-width: 250px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px;">
+                            <h4>Composition:</h4>
+                            <p style="margin-top: 10px; text-align: center;">
+                                \[\hat{f} = \sum_k m_k \odot \hat{f}_k\]
+                            </p>
+                            <p style="margin-top: 10px; text-align: center;">
+                                \[m_k = \text{softmax}_k(\alpha_k)\]
+                            </p>
+                        </div>
+                    </div>
+
+                    <p
+                        style="margin-top: 20px; padding: 15px 20px; background: rgba(255,255,255,0.05); border-radius: 8px; border-left: 3px solid #4CAF50;">
+                        <strong>Important:</strong> The model reconstructs <em>features</em>, not pixels.
+                        This is more robust and captures semantic content rather than low-level texture.
+                    </p>
                 </div>
             </div>
 
             <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
 
             <!-- Training Objective -->
-            <div style="margin-bottom: 40px;">
+            <div id="training" style="margin-bottom: 60px;">
                 <h2>Training Objective</h2>
 
-                <div style="margin-bottom: 30px;">
-                    <h3>Masked Slot Modeling</h3>
-                    <p>Analogous to masked language modeling:</p>
-                    <ol style="padding-left: 25px; color: var(--text-secondary); margin-top: 10px;">
-                        <li>Randomly mask slot tokens across time</li>
-                        <li>Transformer infers missing slots from context</li>
-                        <li>Loss is reconstruction error in feature space</li>
-                    </ol>
+                <!-- Masked Slot Modeling -->
+                <div style="margin-top: 25px; margin-bottom: 35px;">
+                    <h3>Masked Slot Modeling (MSM)</h3>
+                    <p style="margin-top: 15px;">
+                        Analogous to masked language modeling in BERT, but for visual slots!
+                    </p>
+
+                    <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap;">
+                        <div
+                            style="flex: 1; min-width: 180px; background: rgba(255,255,255,0.03); padding: 15px 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.5rem; margin-bottom: 8px;">1️⃣</div>
+                            <p style="font-size: 0.9rem;">Randomly mask slot tokens across time</p>
+                        </div>
+                        <div
+                            style="flex: 1; min-width: 180px; background: rgba(255,255,255,0.03); padding: 15px 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.5rem; margin-bottom: 8px;">2️⃣</div>
+                            <p style="font-size: 0.9rem;">Transformer infers missing slots from context</p>
+                        </div>
+                        <div
+                            style="flex: 1; min-width: 180px; background: rgba(255,255,255,0.03); padding: 15px 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 1.5rem; margin-bottom: 8px;">3️⃣</div>
+                            <p style="font-size: 0.9rem;">Compute reconstruction loss in feature space</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                        <p style="text-align: center; font-size: 1rem;">
+                            \[\mathcal{L}_{\text{reconstruction}} = \sum_{t,i,j} \| f_{t,i,j} - \hat{f}_{t,i,j} \|^2\]
+                        </p>
+                    </div>
                 </div>
 
-                <div style="margin-bottom: 30px;">
+                <!-- Slot Orthogonality -->
+                <div style="margin-bottom: 35px;">
                     <h3>Slot Orthogonality Regularization</h3>
-                    <p>Penalizes redundant slots to encourage disentangled object representations and prevent slot
-                        collapse.</p>
+                    <p style="margin-top: 15px;">
+                        Penalizes redundant slots to encourage <strong>disentangled object representations</strong>
+                        and prevent slot collapse (where all slots learn the same thing).
+                    </p>
+
+                    <div style="margin-top: 20px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                        <p style="text-align: center; font-size: 1rem;">
+                            \[\mathcal{L}_{\text{orthogonality}} = \sum_{i \neq j} |s_i \cdot s_j|^2\]
+                        </p>
+                    </div>
                 </div>
 
-                <div>
-                    <h3>Total Loss</h3>
+                <!-- Total Loss -->
+                <div
+                    style="background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                    <h3 style="text-align: center;">Total Loss</h3>
                     <p
-                        style="font-size: 1.1rem; margin-top: 15px; text-align: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                        style="font-size: 1.2rem; margin-top: 20px; text-align: center; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 8px;">
                         \[\mathcal{L} = \mathcal{L}_{\text{reconstruction}} + \lambda
                         \mathcal{L}_{\text{orthogonality}}\]
                     </p>
+                    <p style="text-align: center; margin-top: 15px; color: var(--text-secondary);">
+                        where \(\lambda\) is a hyperparameter (typically 0.1-1.0)
+                    </p>
+                </div>
+            </div>
+
+            <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
+
+            <!-- Implementation Details -->
+            <div id="implementation" style="margin-bottom: 60px;">
+                <h2>Implementation Details</h2>
+
+                <div style="display: flex; gap: 25px; flex-wrap: wrap; margin-top: 25px;">
+                    <!-- Hardware -->
+                    <div
+                        style="flex: 1; min-width: 280px; background: rgba(255,255,255,0.03); padding: 25px; border-radius: 12px;">
+                        <h3 style="color: #4CAF50;">💻 Hardware Target</h3>
+                        <ul style="padding-left: 20px; color: var(--text-secondary); margin-top: 15px; line-height: 2;">
+                            <li><strong>GPU:</strong> NVIDIA RTX 2070 Super (8GB VRAM)</li>
+                            <li><strong>RAM:</strong> 16GB DDR4</li>
+                            <li><strong>Storage:</strong> NVMe SSD for dataset</li>
+                        </ul>
+                    </div>
+
+                    <!-- Config -->
+                    <div
+                        style="flex: 1; min-width: 280px; background: rgba(255,255,255,0.03); padding: 25px; border-radius: 12px;">
+                        <h3 style="color: #2196F3;">⚙️ Model Configuration</h3>
+                        <ul style="padding-left: 20px; color: var(--text-secondary); margin-top: 15px; line-height: 2;">
+                            <li><strong>Slots per frame:</strong> K = 7</li>
+                            <li><strong>Slot dimension:</strong> D = 256</li>
+                            <li><strong>Transformer layers:</strong> 4</li>
+                            <li><strong>Attention heads:</strong> 8</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Optimizations -->
+                <div style="margin-top: 30px;">
+                    <h3>Memory Optimizations</h3>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+                        <div
+                            style="flex: 1; min-width: 200px; padding: 15px 20px; background: rgba(76, 175, 80, 0.1); border-radius: 8px; border: 1px solid rgba(76, 175, 80, 0.2);">
+                            <strong>Mixed Precision (FP16)</strong>
+                            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 5px;">~40% memory
+                                reduction</p>
+                        </div>
+                        <div
+                            style="flex: 1; min-width: 200px; padding: 15px 20px; background: rgba(33, 150, 243, 0.1); border-radius: 8px; border: 1px solid rgba(33, 150, 243, 0.2);">
+                            <strong>Gradient Checkpointing</strong>
+                            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 5px;">Trade compute
+                                for memory</p>
+                        </div>
+                        <div
+                            style="flex: 1; min-width: 200px; padding: 15px 20px; background: rgba(156, 39, 176, 0.1); border-radius: 8px; border: 1px solid rgba(156, 39, 176, 0.2);">
+                            <strong>Frozen Encoder</strong>
+                            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 5px;">No gradients
+                                stored</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dataset -->
+                <div style="margin-top: 30px; background: rgba(255,255,255,0.03); padding: 25px; border-radius: 12px;">
+                    <h3>Dataset: MOVi-C</h3>
+                    <p style="margin-top: 10px; color: var(--text-secondary);">
+                        Multi-Object Video dataset from DeepMind. Synthetic scenes with known ground truth for
+                        evaluation.
+                    </p>
+                    <ul style="padding-left: 25px; color: var(--text-secondary); margin-top: 15px; line-height: 1.8;">
+                        <li>3-10 objects per video</li>
+                        <li>24 frames per video</li>
+                        <li>128×128 resolution (can upsample)</li>
+                        <li>Rich occlusion and motion patterns</li>
+                    </ul>
+                </div>
+
+                <!-- Project Structure -->
+                <div style="margin-top: 30px;">
+                    <h3>Project Structure</h3>
+                    <pre
+                        style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; overflow-x: auto; font-size: 0.85rem; line-height: 1.6; color: var(--text-secondary);">
+tiny-slot-bert/
+├── configs/              # Hydra configuration files
+│   ├── model/
+│   ├── data/
+│   └── train/
+├── src/
+│   ├── models/
+│   │   ├── encoder.py          # Visual encoder wrapper
+│   │   ├── slot_attention.py   # Slot Attention module
+│   │   ├── temporal_transformer.py  # Slot-BERT
+│   │   ├── decoder.py          # Slot decoder
+│   │   └── slot_bert.py        # Full model
+│   ├── data/
+│   │   └── movi.py             # MOVi dataloader
+│   └── training/
+│       └── trainer.py          # Training loop
+├── scripts/
+│   ├── train.py
+│   └── visualize.py
+└── notebooks/
+    └── exploration.ipynb</pre>
+                </div>
+            </div>
+
+            <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
+
+            <!-- Results & Demos -->
+            <div id="results" style="margin-bottom: 40px;">
+                <h2>Results & Demos</h2>
+
+                <div
+                    style="background: linear-gradient(135deg, rgba(255,193,7,0.1), rgba(255,152,0,0.1)); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,193,7,0.2); margin-top: 25px;">
+                    <h3 style="color: #FFC107; display: flex; align-items: center; gap: 10px;">
+                        🚧 Work in Progress
+                    </h3>
+                    <p style="margin-top: 15px; color: var(--text-secondary);">
+                        This section will be populated as the project progresses! Currently training the model on
+                        MOVi-C.
+                    </p>
+                </div>
+
+                <!-- Placeholder Results -->
+                <div style="margin-top: 35px;">
+                    <h3>Planned Visualizations</h3>
+                    <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
+                        <div
+                            style="flex: 1; min-width: 250px; background: rgba(255,255,255,0.03); padding: 25px; border-radius: 12px; text-align: center;">
+                            <div
+                                style="height: 150px; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                                <span style="font-size: 3rem; opacity: 0.3;">🎥</span>
+                            </div>
+                            <h4>Segmentation Masks</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 8px;">
+                                Per-slot attention masks overlaid on video frames
+                            </p>
+                        </div>
+                        <div
+                            style="flex: 1; min-width: 250px; background: rgba(255,255,255,0.03); padding: 25px; border-radius: 12px; text-align: center;">
+                            <div
+                                style="height: 150px; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                                <span style="font-size: 3rem; opacity: 0.3;">📊</span>
+                            </div>
+                            <h4>Object Tracking</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 8px;">
+                                Slot identity persistence across frames
+                            </p>
+                        </div>
+                        <div
+                            style="flex: 1; min-width: 250px; background: rgba(255,255,255,0.03); padding: 25px; border-radius: 12px; text-align: center;">
+                            <div
+                                style="height: 150px; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                                <span style="font-size: 3rem; opacity: 0.3;">🔄</span>
+                            </div>
+                            <h4>Occlusion Recovery</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 8px;">
+                                Object re-identification after occlusion
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Placeholder Metrics -->
+                <div style="margin-top: 35px;">
+                    <h3>Expected Metrics</h3>
+                    <table
+                        style="width: 100%; border-collapse: collapse; margin-top: 15px; background: rgba(255,255,255,0.03); border-radius: 8px; overflow: hidden;">
+                        <thead>
+                            <tr style="background: rgba(255,255,255,0.05);">
+                                <th
+                                    style="padding: 15px 20px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                    Metric</th>
+                                <th
+                                    style="padding: 15px 20px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                    Target</th>
+                                <th
+                                    style="padding: 15px 20px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                    Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">FG-ARI
+                                    (Foreground Adjusted Rand Index)</td>
+                                <td style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">> 0.5
+                                </td>
+                                <td
+                                    style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #FFC107;">
+                                    Pending</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">mIoU
+                                    (Mean Intersection over Union)</td>
+                                <td style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">> 0.4
+                                </td>
+                                <td
+                                    style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #FFC107;">
+                                    Pending</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    Inference Speed</td>
+                                <td style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">> 10
+                                    FPS</td>
+                                <td
+                                    style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #FFC107;">
+                                    Pending</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 20px;">Training Time</td>
+                                <td style="padding: 12px 20px;">
+                                    < 24 hours</td>
+                                <td style="padding: 12px 20px; color: #FFC107;">Pending</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Training Progress -->
+                <div style="margin-top: 35px; background: rgba(255,255,255,0.03); padding: 25px; border-radius: 12px;">
+                    <h3>Training Progress</h3>
+                    <p style="margin-top: 10px; color: var(--text-secondary);">
+                        Check back soon for training curves, loss plots, and qualitative results!
+                    </p>
+                    <div style="margin-top: 20px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                        <p style="text-align: center; font-style: italic; color: var(--text-secondary);">
+                            📈 Training visualizations will appear here...
+                        </p>
+                    </div>
                 </div>
             </div>
 
