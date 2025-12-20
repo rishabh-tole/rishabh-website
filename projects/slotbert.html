@@ -67,7 +67,7 @@
 
     <!-- Case Study Content -->
     <section class="container" style="padding-top: 0;">
-        <div class="glass-card fade-in-up" style="padding: 40px; text-align: left; align-items: flex-start;">
+        <div class="glass-card fade-in-up visible" style="padding: 40px; text-align: left; align-items: flex-start;">
 
             <!-- Table of Contents -->
             <div
@@ -91,16 +91,17 @@
                 <p>
                     I came across the Slot-BERT paper while scrolling through ICLR submissions and thought it was super
                     cool. The idea of learning object-centric representations entirely through self-supervision seemed
-                    fascinating to me.
+                    super interesting to me.
                     <br><br>
                     Unlike traditional vision systems that process frames independently, Slot-BERT reasons about
                     <strong>persistent objects across time</strong>. This lets it do robust segmentation, tracking, and
                     even
-                    recover from occlusion. All without any labels!
+                    recover from stuff blocking it. All without any labels!
                     <br><br>
-                    I wanted to see if I could implement this architecture on my home PC for fun, and then apply it to
+                    I wanted to see if I could implement this architecture on my home PC just for funsies, and then
+                    apply it to
                     something in my life. Most research code assumes access to massive compute, but the core ideas
-                    should scale down to consumer hardware if done carefully.
+                    should scale down to my hardware if done properly.
                 </p>
 
                 <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 12px; margin-top: 25px;">
@@ -108,14 +109,14 @@
                     <ul style="padding-left: 25px; color: var(--text-secondary); line-height: 1.8;">
                         <li>Understand the Slot-BERT architecture by building it from scratch</li>
                         <li>Validate that object-centric video understanding works on modest hardware</li>
-                        <li>Extend the model toward real-time, streaming inference</li>
-                        <li>Have fun!</li>
+                        <li>Extend the model toward real-time, streaming inference (to my webcam or something)</li>
+                        <li>Have fun and learn!</li>
                     </ul>
                 </div>
 
                 <p
                     style="margin-top: 25px; padding: 15px 20px; background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid var(--accent-primary);">
-                    <strong>Reference Paper:</strong>
+                    <strong>Here is my reference paper:</strong>
                     <a href="https://arxiv.org/abs/2501.12477" target="_blank"
                         style="color: var(--accent-primary);">Slot-BERT: Self-Supervised Object Discovery in Surgical
                         Video</a> (arXiv 2025)
@@ -757,7 +758,7 @@ tiny-slot-bert/
                     </p>
                     <div style="margin-top: 20px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 8px;">
                         <p style="text-align: center; font-style: italic; color: var(--text-secondary);">
-                            📈 Training visualizations will appear here...
+                            Training visualizations will appear here...
                         </p>
                     </div>
                 </div>
