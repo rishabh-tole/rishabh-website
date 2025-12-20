@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiny Slot-BERT | Rishabh Tole</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <meta name="description" content="Self-supervised object-centric video understanding on consumer hardware.">
+    <link rel="stylesheet" href="../styles.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- KaTeX for LaTeX rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">RT.</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../experience.html">Work Experience</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+                <li><a href="../music.html">Music</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../Rishabh_Resume.pdf" class="btn btn-sm btn-outline">Resume</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Header -->
+    <div class="page-header">
+        <div class="container fade-in-up">
+            <h1 style="margin-bottom: 20px;">Tiny Slot-BERT</h1>
+            <p class="tagline" style="text-align:center; color: var(--text-secondary); margin-bottom: 30px;">
+                Self-Supervised Object Video Segmentation
+            </p>
+            <div class="tech-stack" style="justify-content: center; margin-bottom: 30px; flex-wrap: wrap;">
+                <span class="tech-tag">PyTorch</span>
+                <span class="tech-tag">Self-Supervised Learning</span>
+                <span class="tech-tag">Computer Vision</span>
+                <span class="tech-tag">Transformers</span>
+                <span class="tech-tag">Slot Attention</span>
+            </div>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto; color: var(--text-secondary);">
+                Reproducing and extending the Slot-BERT architecture for self-supervised object-centric video
+                understanding on consumer hardware.
+            </p>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="https://github.com/rishabh-tole/tiny-slot-bert" target="_blank" class="btn btn-primary">
+                    View on GitHub →
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Case Study Content -->
+    <section class="container" style="padding-top: 0;">
+        <div class="glass-card fade-in-up" style="padding: 40px; text-align: left; align-items: flex-start;">
+
+            <!-- Motivation -->
+            <div style="margin-bottom: 60px;">
+                <h2>Motivation</h2>
+                <p>
+                    I came across the Slot-BERT paper while scrolling through ICLR submissions and thought it was super
+                    cool. The idea of learning object-centric representations entirely through self-supervision seemed
+                    fascinating to me.
+                    <br><br>
+                    I wanted to see if I could implement this architecture on my home PC for fun, and then apply it to
+                    something in my life. Most research code assumes access to massive compute, but the core ideas
+                    should scale down to consumer hardware if done carefully.
+                    <br><br>
+                    <strong>This project is my attempt to:</strong>
+                </p>
+                <ul style="margin-top: 15px; padding-left: 25px; color: var(--text-secondary);">
+                    <li>Understand the Slot-BERT architecture by building it from scratch</li>
+                    <li>Validate that object-centric video understanding works on modest hardware</li>
+                    <li>Extend the model toward real-time, streaming inference</li>
+                    <li>Have fun!</li>
+                </ul>
+                <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-secondary);">
+                    <strong>Reference Paper:</strong>
+                    <a href="https://arxiv.org/abs/2501.12477" target="_blank"
+                        style="color: var(--accent-primary);">Slot-BERT: Self-Supervised Object Discovery in Surgical
+                        Video</a> (arXiv 2025)
+                </p>
+            </div>
+
+            <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
+
+            <!-- Project Goals -->
+            <div style="margin-bottom: 60px;">
+                <h2>Project Goals</h2>
+                <p style="margin-bottom: 20px;">Build a self-supervised video model that achieves the following:</p>
+
+                <table
+                    style="width: 100%; border-collapse: collapse; margin-top: 15px; background: rgba(255,255,255,0.03); border-radius: 8px; overflow: hidden;">
+                    <thead>
+                        <tr style="background: rgba(255,255,255,0.05);">
+                            <th
+                                style="padding: 15px 20px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                Goal</th>
+                            <th
+                                style="padding: 15px 20px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <strong>Object Slots</strong>
+                            </td>
+                            <td style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">Represent
+                                each frame using a small set of learned object slots</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <strong>Soft Segmentation</strong>
+                            </td>
+                            <td style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">Learn
+                                segmentation masks without any labels</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <strong>Temporal Identity</strong>
+                            </td>
+                            <td style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">Maintain
+                                object identity across time</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <strong>Occlusion Handling</strong>
+                            </td>
+                            <td style="padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">Handle
+                                occlusion and object re-entry</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 20px;"><strong>Lightweight</strong></td>
+                            <td style="padding: 12px 20px;">Run on a single consumer GPU (RTX 2070 Super)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="margin-top: 30px;">
+                    <h3>Development Phases</h3>
+                    <ol style="padding-left: 25px; color: var(--text-secondary); margin-top: 15px;">
+                        <li><strong>Reproduction</strong> — Slot-BERT core architecture</li>
+                        <li><strong>Validation</strong> — Object-centric benchmark (MOVi)</li>
+                        <li><strong>Extension</strong> — Online/streaming inference</li>
+                    </ol>
+                </div>
+            </div>
+
+            <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
+
+            <!-- Problem Definition -->
+            <div style="margin-bottom: 60px;">
+                <h2>Problem Definition</h2>
+
+                <div style="margin-bottom: 25px;">
+                    <h3>Input</h3>
+                    <p>Unlabeled RGB video clips: \(\{I_1, I_2, \ldots, I_T\}\)</p>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                    <h3>Output</h3>
+                    <p>For each frame \(t\):</p>
+                    <ul style="padding-left: 25px; color: var(--text-secondary); margin-top: 10px;">
+                        <li>\(K\) slot embeddings: \(S_{t,k} \in \mathbb{R}^D\)</li>
+                        <li>Soft segmentation masks: \(M_{t,k} \in [0,1]^{H \times W}\)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Constraints</h3>
+                    <ul style="padding-left: 25px; color: var(--text-secondary); margin-top: 10px;">
+                        <li>No ground-truth segmentation</li>
+                        <li>No object identity labels</li>
+                        <li>No supervision beyond reconstruction</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
+
+            <!-- Architecture -->
+            <div style="margin-bottom: 60px;">
+                <h2>High-Level Architecture</h2>
+                <p
+                    style="background: rgba(255,255,255,0.05); padding: 15px 20px; border-radius: 8px; border-left: 3px solid var(--accent-primary); margin-bottom: 25px;">
+                    <strong>Core Insight:</strong> Objects are represented as latent slots. Slots are treated as tokens.
+                    Temporal reasoning operates over slots, not pixels.
+                </p>
+
+                <pre
+                    style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 12px; overflow-x: auto; font-size: 0.85rem; line-height: 1.6; color: var(--text-secondary);">
+Video frames
+     ↓
+┌─────────────────────────┐
+│  Frozen Visual Encoder  │  (ViT / CNN, pretrained)
+└─────────────────────────┘
+     ↓
+Patch-level feature maps
+     ↓
+┌─────────────────────────┐
+│     Slot Attention      │  (per-frame object discovery)
+└─────────────────────────┘
+     ↓
+Object slots (K per frame)
+     ↓
+┌─────────────────────────┐
+│ Temporal Slot Transformer│  (BERT-style, across time)
+└─────────────────────────┘
+     ↓
+┌─────────────────────────┐
+│      Slot Decoder       │  (reconstructions + masks)
+└─────────────────────────┘
+     ↓
+Feature reconstruction loss</pre>
+            </div>
+
+            <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
+
+            <!-- Core Components -->
+            <div style="margin-bottom: 60px;">
+                <h2>Core Components</h2>
+
+                <div style="margin-bottom: 35px;">
+                    <h3>1. Frozen Visual Encoder</h3>
+                    <p>Converts images into spatial feature maps using a pretrained model (ViT or CNN). Frozen during
+                        training to reduce compute and isolate object-centric learning.</p>
+                </div>
+
+                <div style="margin-bottom: 35px;">
+                    <h3>2. Slot Attention</h3>
+                    <p>Takes spatial features and produces \(K\) object slots per frame. Each slot softly "claims"
+                        regions of the image through competitive attention. <strong>Segmentation emerges because
+                            reconstruction is easiest when slots specialize.</strong></p>
+                </div>
+
+                <div style="margin-bottom: 35px;">
+                    <h3>3. Temporal Slot Transformer (Slot-BERT)</h3>
+                    <p>Slots from all frames are treated as tokens in a bidirectional transformer. This enables:</p>
+                    <ul style="padding-left: 25px; color: var(--text-secondary); margin-top: 10px;">
+                        <li>Identity persistence across frames</li>
+                        <li>Recovery after occlusion</li>
+                        <li>Long-range temporal context</li>
+                    </ul>
+                    <p style="margin-top: 10px; font-style: italic; color: var(--accent-primary);">This is the main
+                        contribution of the paper.</p>
+                </div>
+
+                <div>
+                    <h3>4. Slot Decoder</h3>
+                    <p>Each slot is decoded independently to produce:</p>
+                    <ul style="padding-left: 25px; color: var(--text-secondary); margin-top: 10px;">
+                        <li>A feature contribution</li>
+                        <li>A spatial mask</li>
+                    </ul>
+                    <p style="margin-top: 10px;">Masks are normalized and composed. <strong>The model reconstructs
+                            features, not pixels.</strong></p>
+                </div>
+            </div>
+
+            <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
+
+            <!-- Training Objective -->
+            <div style="margin-bottom: 40px;">
+                <h2>Training Objective</h2>
+
+                <div style="margin-bottom: 30px;">
+                    <h3>Masked Slot Modeling</h3>
+                    <p>Analogous to masked language modeling:</p>
+                    <ol style="padding-left: 25px; color: var(--text-secondary); margin-top: 10px;">
+                        <li>Randomly mask slot tokens across time</li>
+                        <li>Transformer infers missing slots from context</li>
+                        <li>Loss is reconstruction error in feature space</li>
+                    </ol>
+                </div>
+
+                <div style="margin-bottom: 30px;">
+                    <h3>Slot Orthogonality Regularization</h3>
+                    <p>Penalizes redundant slots to encourage disentangled object representations and prevent slot
+                        collapse.</p>
+                </div>
+
+                <div>
+                    <h3>Total Loss</h3>
+                    <p
+                        style="font-size: 1.1rem; margin-top: 15px; text-align: center; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+                        \[\mathcal{L} = \mathcal{L}_{\text{reconstruction}} + \lambda
+                        \mathcal{L}_{\text{orthogonality}}\]
+                    </p>
+                </div>
+            </div>
+
+            <div style="margin-top: 50px; text-align: center; width: 100%;">
+                <a href="https://github.com/rishabh-tole/tiny-slot-bert" target="_blank" class="btn btn-primary">
+                    View on GitHub →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Rishabh Tole.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>
