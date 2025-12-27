@@ -70,6 +70,54 @@
     <section class="container" style="padding-top: 0;">
         <div class="glass-card fade-in-up visible" style="padding: 40px; text-align: left; align-items: flex-start;">
 
+
+            <!-- Project Description Box -->
+            <div class="project-intro" style="
+                background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+                border-radius: 12px;
+                padding: 30px;
+                margin-bottom: 50px;
+                border: 1px solid rgba(255,255,255,0.1);
+                box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            ">
+                <div style="margin-bottom: 30px;">
+                    <h3
+                        style="color: var(--accent-primary); margin-bottom: 12px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;">
+                        The Goal</h3>
+                    <p style="font-size: 1.15rem; line-height: 1.6; font-weight: 500;">
+                        To build a self-supervised object-centric video model from scratch on consumer hardware, capable
+                        of decomposing video into meaningful "object slots" without any labels.
+                    </p>
+                </div>
+
+                <div
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px;">
+                    <div>
+                        <h4
+                            style="color: #fff; margin-bottom: 10px; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
+                            <span>✨</span> Inspiration
+                        </h4>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+                            I discovered the <a href="https://arxiv.org/abs/2501.12477" target="_blank"
+                                style="color: var(--accent-primary); text-decoration: none; border-bottom: 1px dashed var(--accent-primary);">Slot-BERT
+                                paper</a> (ICLR 2025) and was fascinated by the potential of learning object identities
+                            purely through reconstruction, similar to how LLMs learn language.
+                        </p>
+                    </div>
+                    <div>
+                        <h4
+                            style="color: #fff; margin-bottom: 10px; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
+                            <span>👨‍💻</span> As a Learner
+                        </h4>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+                            Most research assumes massive compute. My challenge is to reproduce these results on a
+                            single home PC (RTX 2070 Super) and optimize the architecture to eventually run in real-time
+                            on a webcam.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Demos & Discussion -->
             <section id="v1-demo" style="margin-bottom: 60px;">
                 <h2>v1 Demo</h2>
@@ -292,50 +340,7 @@
                 </ol>
             </section>
 
-            <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
 
-
-            <!-- Motivation -->
-            <div id="motivation" style="margin-bottom: 60px;">
-                <h2>Motivation</h2>
-                <p>
-                    I came across this <a href="https://arxiv.org/abs/2501.12477" target="_blank"
-                        style="color: #4da6ff; text-decoration: underline;">paper</a> while scrolling through
-                    ICLR 2025
-                    submissions and thought it was super
-                    cool. The idea of learning object-centric representations entirely through self-supervision seemed
-                    super interesting to me.
-                    <br><br>
-                    Unlike traditional vision systems that process frames independently, Slot-BERT reasons about
-                    <strong>persistent objects across time</strong>. This lets it do robust segmentation, tracking, and
-                    even
-                    recover from stuff blocking it. All without any labels!
-                    <br><br>
-                    I wanted to see if I could implement this architecture on my home PC just for funsies, and then
-                    apply it to
-                    something in my life. Most research code assumes access to massive compute, but the core ideas
-                    should scale down to my hardware if done properly.
-                </p>
-
-                <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 12px; margin-top: 25px;">
-                    <h4 style="margin-bottom: 15px;">This project is my attempt to:</h4>
-                    <ul style="padding-left: 25px; color: var(--text-secondary); line-height: 1.8;">
-                        <li>Understand the Slot-BERT architecture by building it from scratch</li>
-                        <li>Validate that object-centric video understanding works on modest hardware</li>
-                        <li>Extend the model toward real-time, streaming inference (to my webcam or something)</li>
-                        <li>Have fun and learn!</li>
-                    </ul>
-                </div>
-
-                <p
-                    style="margin-top: 25px; padding: 15px 20px; background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid var(--accent-primary);">
-                    <strong>Here is my reference paper:</strong>
-                    <a href="https://arxiv.org/abs/2501.12477" target="_blank"
-                        style="color: #4da6ff; text-decoration: underline;">Slot-BERT: Self-Supervised Object Discovery
-                        in Surgical
-                        Video</a> (arXiv 2025)
-                </p>
-            </div>
 
             <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
 
