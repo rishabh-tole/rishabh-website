@@ -70,6 +70,165 @@
     <section class="container" style="padding-top: 0;">
         <div class="glass-card fade-in-up visible" style="padding: 40px; text-align: left; align-items: flex-start;">
 
+            <!-- Demos -->
+            <section id="demos" style="margin-bottom: 60px;">
+                <h2>Demos</h2>
+                <div style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 20px;">
+                    <div style="min-width: 300px; flex: 1;">
+                        <img src="../images/slotbert/video_0_combined.gif" alt="Demo Video 0" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                    </div>
+                    <div style="min-width: 300px; flex: 1;">
+                        <img src="../images/slotbert/video_1_combined.gif" alt="Demo Video 1" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                    </div>
+                    <div style="min-width: 300px; flex: 1;">
+                        <img src="../images/slotbert/video_2_combined.gif" alt="Demo Video 2" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                    </div>
+                </div>
+            </section>
+
+            <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
+
+            <!-- Discussion -->
+            <section id="discussion" style="margin-bottom: 60px;">
+                <h2>Discussion</h2>
+                <p>DISCUSSION HERE</p>
+            </section>
+
+            <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
+
+            <!-- Architecture (v1) -->
+            <section id="new-architecture" style="margin-bottom: 60px;">
+                <h2>Architecture & Process</h2>
+                
+                <h3>1. High-Level Architecture</h3>
+                <p><strong>Tiny Slot-BERT</strong> is an object-centric video understanding model designed to be lightweight and efficient. It decomposes video frames into a set of discrete "slots," where each slot represents an object or background element. These slots track objects over time and can be used to reconstruct the original video, ensuring they capture meaningful visual information.</p>
+                <p>The architecture consists of four main components:</p>
+                <ol style="padding-left: 25px; margin-top: 10px; line-height: 1.6;">
+                    <li><strong>Visual Encoder</strong>: Extracts feature maps from input frames.</li>
+                    <li><strong>Slot Attention</strong>: Iteratively refines a set of initialized memory slots to bind to specific objects in the features.</li>
+                    <li><strong>Temporal Transformer</strong>: (Disabled in Phase 1) Processes slots across time to handle dynamics.</li>
+                    <li><strong>Slot Decoder</strong>: Reconstructs the image and segmentation masks from the slots.</li>
+                </ol>
+                <blockquote style="border-left: 4px solid var(--accent-primary); padding-left: 15px; margin: 20px 0; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 0 8px 8px 0;">
+                    <strong>Note:</strong> In this implementation (Phase 1), the <strong>Temporal Transformer is disabled</strong>. The model processes each frame independently to first learn robust object discovery (slot attention) and reconstruction before adding the complexity of cross-frame reasoning. This staged approach makes training more stable.
+                </blockquote>
+
+                <h3>2. Component Details</h3>
+                
+                <h4>A. Simple Convolutional Encoder (<code>models/encoder.py</code>)</h4>
+                <p>A lightweight CNN encoder is used for efficiency in Phase 1.</p>
+                <ul style="padding-left: 25px; margin-top: 10px; line-height: 1.6;">
+                    <li><strong>Structure</strong>: A stack of 4 convolutional blocks with BatchNorm and ReLU.</li>
+                    <li><strong>Input</strong>: RGB Video Frames (\(B \times 3 \times H \times W\)).</li>
+                    <li><strong>Downsampling</strong>: Reduces input spatial dimensions by <strong>16x</strong> (e.g., \(128 \times 128 \to 8 \times 8\)).</li>
+                    <li><strong>Output</strong>: Feature map (\(B \times N \times D\)), where \(N = 64\) and \(D = 384\).</li>
+                </ul>
+
+                <h4>B. Slot Attention (<code>models/slot_attention.py</code>)</h4>
+                <p>The core mechanism for object discovery.</p>
+                <ul style="padding-left: 25px; margin-top: 10px; line-height: 1.6;">
+                    <li><strong>Input</strong>: Features from the encoder + Positional Embeddings.</li>
+                    <li><strong>Slots</strong>: A set of \(K\) learnable vectors (randomly initialized per frame with high variance to prevent collapse).</li>
+                    <li><strong>Process</strong>:
+                        <ul style="padding-left: 20px; margin-top: 5px;">
+                            <li><strong>Iterative Attention</strong>: Over \(T\) iterations (default 3), slots compete to "explain" parts of the feature map via Softmax attention.</li>
+                            <li><strong>Key/Query/Value</strong>: Slots act as Queries; Features act as Keys and Values.</li>
+                            <li><strong>Update</strong>: Slots are updated using a GRU (Gated Recurrent Unit) based on the accumulated weighted values they attend to.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Output</strong>: Refined Slots (\(B \times K \times D_{slot}\)) and Attention Masks (which serve as segmentation masks).</li>
+                </ul>
+
+                <h4>C. Slot Decoder (<code>models/decoder.py</code>)</h4>
+                <p>Responsible for reconstructing the image from the abstract slots.</p>
+                <ul style="padding-left: 25px; margin-top: 10px; line-height: 1.6;">
+                    <li><strong>Type</strong>: <strong>Spatial Broadcast Decoder</strong>.</li>
+                    <li><strong>Process</strong>:
+                        <ol style="padding-left: 20px; margin-top: 5px;">
+                            <li><strong>Broadcast</strong>: Each slot is replicated across a spatial grid.</li>
+                            <li><strong>Positional Encoding</strong>: Learnable 2D positional embeddings are added.</li>
+                            <li><strong>Pixel Decoder</strong>: A small CNN processes grids to produce RGB + Mask.</li>
+                            <li><strong>Composition</strong>: Final image is a weighted sum of RGB sprites using Masks.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Key Feature</strong>: The <strong>Slot Attention Masks</strong> are passed directly to reconstruction to force the attention mechanism to learn accurate segmentation.</li>
+                </ul>
+
+                <h3>3. Training Losses</h3>
+                <p>The model is trained with a combination of losses designed to encourage meaningful object segmentation:</p>
+                
+                <div style="text-align: center; margin: 30px 0;">
+                    <img src="../images/slotbert/loss_graphs.png" alt="Training Loss Graphs" style="max-width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                    <p style="text-align: center; color: var(--text-secondary); font-size: 0.9rem; margin-top: 10px;">Training Loss Curves</p>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0; background: rgba(255,255,255,0.03);">
+                        <thead style="background: rgba(255,255,255,0.05);">
+                            <tr>
+                                <th style="padding: 10px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1);">Loss</th>
+                                <th style="padding: 10px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1);">Description</th>
+                                <th style="padding: 10px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1);">Weight</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);"><strong>Reconstruction (MSE)</strong></td>
+                                <td style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);">Pixel-space L2 loss between input and reconstruction. The primary signal.</td>
+                                <td style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);">1.0</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);"><strong>Orthogonality</strong></td>
+                                <td style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);">Penalizes slot similarity (cosine) to encourage diverse representations.</td>
+                                <td style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);">0.0 (disabled)</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);"><strong>Mask Entropy</strong></td>
+                                <td style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);">Encourages sharp, decisive segmentation masks (low per-pixel entropy).</td>
+                                <td style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);">0.0 (disabled)</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);"><strong>Slot Coverage</strong></td>
+                                <td style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);">Prevents "dead" slots that cover no area. Uses exponential penalty + entropy bonus.</td>
+                                <td style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);">0.0 (disabled)</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);"><strong>Appearance Consistency</strong></td>
+                                <td style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);"><strong>Critical.</strong> Penalizes color variance within a slot's mask. Forces slots to align with object boundaries.</td>
+                                <td style="padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05);">0.0 (disabled)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <blockquote style="border-left: 4px solid var(--accent-primary); padding-left: 15px; margin: 20px 0; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 0 8px 8px 0;">
+                    <strong>Note on Disabled Losses:</strong> In certain training configurations, auxiliary losses (ortho, entropy, coverage, appearance) are set to 0 to initially let the model learn reconstruction freely. These can be progressively enabled to refine slot specialization.
+                </blockquote>
+
+                <h3>4. Inference Process</h3>
+                <ol style="padding-left: 25px; margin-top: 10px; line-height: 1.6;">
+                    <li><strong>Input</strong>: A video clip (e.g., 24 frames of \(128 \times 128\)).</li>
+                    <li><strong>Encoding</strong>: The encoder processes each frame independently to extract feature maps. Fourier positional embeddings are added.</li>
+                    <li><strong>Slot Extraction</strong>: Slot Attention runs on each frame's features to extract \(K\) slots (e.g., 7 slots).</li>
+                    <li><strong>Decoding</strong>:
+                        <ul style="padding-left: 20px; margin-top: 5px;">
+                            <li>Slots are passed to the Decoder.</li>
+                            <li>The decoder produces an RGB reconstruction for each slot.</li>
+                            <li>Per-slot images are combined into a full frame reconstruction.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Visualization</strong>:
+                        <ul style="padding-left: 20px; margin-top: 5px;">
+                            <li><strong>Original</strong>: Input video.</li>
+                            <li><strong>Segmentation</strong>: An argmax visualization showing which slot "owns" each pixel.</li>
+                            <li><strong>Slots</strong>: Visualization of what individual slots "see" (original image masked by slot attention).</li>
+                            <li><strong>Reconstruction</strong>: Model's attempt to recreate the video.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </section>
+
+            <hr style="border-top: 1px solid rgba(255,255,255,0.1); margin: 40px 0;">
+
 
             <!-- Motivation -->
             <div id="motivation" style="margin-bottom: 60px;">
